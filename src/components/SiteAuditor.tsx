@@ -27,9 +27,12 @@ import {
   Layers,
   ArrowRight,
   Zap,
+  FileText,
+  DollarSign,
 } from 'lucide-react';
 import { NavTabType } from './Navbar';
 import { KidExplainer } from './KidExplainer';
+import { WebsiteRevenueCard } from './WebsiteRevenueCard';
 
 interface SiteAuditorProps {
   onSwitchTab?: (tab: NavTabType) => void;
@@ -43,7 +46,7 @@ export const SiteAuditor: React.FC<SiteAuditorProps> = ({ onSwitchTab }) => {
   const [customNotes, setCustomNotes] = useState<string>('');
   const [sampleContent, setSampleContent] = useState<string>('');
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
-  const [activeResultTab, setActiveResultTab] = useState<'overview' | 'plan' | 'checklist' | 'metrics'>('overview');
+  const [activeResultTab, setActiveResultTab] = useState<'overview' | 'plan' | 'checklist' | 'revenue' | 'metrics'>('overview');
 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -181,8 +184,8 @@ ${
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#191b23] tracking-tight font-['Google_Sans_Display','Google_Sans',sans-serif]">
               AdSense Site Checker
             </h1>
-            <p className="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-widest">
-              Powered by GladSense Publisher Policy & Site Audit Engine
+            <p className="text-xs sm:text-sm font-semibold text-[#1a73e8] uppercase tracking-wider">
+              Instant Pre-Approval Audit & Rejection Doctor for Google AdSense
             </p>
           </div>
 
@@ -282,68 +285,176 @@ ${
                 </span>
               </span>
             </div>
-
-            {/* Localhost / Content Assist Accordion */}
-            <div className="mt-3 text-center">
-              <button
-                type="button"
-                onClick={() => setShowAdvanced(!showAdvanced)}
-                className="text-xs text-slate-500 hover:text-slate-800 transition-colors inline-flex items-center gap-1 font-medium"
-              >
-                {showAdvanced ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-                <span>Testing localhost or behind Cloudflare? Optional content assist</span>
-              </button>
-
-              {showAdvanced && (
-                <div className="mt-2.5 p-4 rounded-2xl bg-white border border-slate-200 text-left text-xs max-w-xl mx-auto shadow-sm">
-                  <p className="text-slate-600 mb-2 font-normal">
-                    If your website is on localhost or blocked by Cloudflare captcha, paste your sample article text or footer content here for instant analysis:
-                  </p>
-                  <textarea
-                    rows={3}
-                    value={sampleContent}
-                    onChange={(e) => setSampleContent(e.target.value)}
-                    placeholder="Paste article body text, paragraph copy, or footer links here..."
-                    className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-xs focus:outline-none focus:border-[#9d62ec]"
-                  />
-                </div>
-              )}
-            </div>
           </form>
 
-          {/* Need Inspiration Pills (Matching Semrush Image) */}
-          <div className="flex flex-wrap items-center justify-center gap-2 pt-2 text-xs text-slate-600">
-            <span>Need inspiration? Try:</span>
-            <button
-              type="button"
-              onClick={() => handleSelectInspiration('google.com', 'generic')}
-              className="px-3.5 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded-full font-medium text-slate-800 transition-colors shadow-2xs cursor-pointer"
-            >
-              google.com
-            </button>
-            <button
-              type="button"
-              onClick={() => handleSelectInspiration('apple.com', 'generic')}
-              className="px-3.5 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded-full font-medium text-slate-800 transition-colors shadow-2xs cursor-pointer"
-            >
-              apple.com
-            </button>
-            <button
-              type="button"
-              onClick={() => handleSelectInspiration('https://tradescalculator-pro.pages.dev', 'compliant')}
-              className="px-3.5 py-1 bg-white hover:bg-emerald-50 border border-emerald-300 rounded-full font-medium text-emerald-700 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-              tradescalculator-pro.pages.dev (100% Ready Benchmark)
-            </button>
-            <button
-              type="button"
-              onClick={() => handleSelectInspiration('https://smartkitchen-recipes-hub.com', 'rejected')}
-              className="px-3.5 py-1 bg-white hover:bg-rose-50 border border-rose-300 rounded-full font-medium text-rose-700 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-              smartkitchen-recipes-hub.com (Rejected Fix)
-            </button>
+          {/* FEATURES TO TRY (ADDED DIRECTLY BELOW SEARCH BAR) */}
+          <div className="pt-5 max-w-4xl mx-auto">
+            <div className="flex items-center justify-center gap-2 mb-3.5">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
+                Explore GladSense Monetization & Policy Tools:
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2.5">
+              {/* 1. 1-Click Fixes */}
+              <button
+                type="button"
+                onClick={() => {
+                  onSwitchTab && onSwitchTab('single-click');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="p-3 bg-white/95 hover:bg-white border border-slate-200/90 hover:border-purple-300 hover:shadow-md rounded-2xl transition-all text-left group cursor-pointer flex flex-col justify-between"
+              >
+                <div className="flex items-center justify-between w-full mb-1.5">
+                  <div className="w-7 h-7 rounded-lg bg-purple-50 text-[#9d62ec] flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Zap className="w-3.5 h-3.5 fill-[#9d62ec]" />
+                  </div>
+                  <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-purple-100 text-purple-700">
+                    New
+                  </span>
+                </div>
+                <div>
+                  <span className="font-bold text-xs text-slate-900 group-hover:text-[#9d62ec] transition-colors block">
+                    1-Click Fixes
+                  </span>
+                  <span className="text-[10px] text-slate-500 leading-tight block mt-0.5">
+                    ads.txt & legal pages
+                  </span>
+                </div>
+              </button>
+
+              {/* 2. Niche Ideas */}
+              <button
+                type="button"
+                onClick={() => {
+                  onSwitchTab && onSwitchTab('niches');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="p-3 bg-white/95 hover:bg-white border border-slate-200/90 hover:border-blue-300 hover:shadow-md rounded-2xl transition-all text-left group cursor-pointer flex flex-col justify-between"
+              >
+                <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#1a73e8] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <FileText className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <span className="font-bold text-xs text-slate-900 group-hover:text-[#1a73e8] transition-colors block">
+                    Niche Ideas
+                  </span>
+                  <span className="text-[10px] text-slate-500 leading-tight block mt-0.5">
+                    High RPM blueprints
+                  </span>
+                </div>
+              </button>
+
+              {/* 3. Revenue Planner */}
+              <button
+                type="button"
+                onClick={() => {
+                  onSwitchTab && onSwitchTab('calculator');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="p-3 bg-white/95 hover:bg-white border border-slate-200/90 hover:border-emerald-300 hover:shadow-md rounded-2xl transition-all text-left group cursor-pointer flex flex-col justify-between"
+              >
+                <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <span className="font-bold text-xs text-slate-900 group-hover:text-emerald-600 transition-colors block">
+                    Revenue Planner
+                  </span>
+                  <span className="text-[10px] text-slate-500 leading-tight block mt-0.5">
+                    RPM & CTR simulator
+                  </span>
+                </div>
+              </button>
+
+              {/* 4. Budget & P&L */}
+              <button
+                type="button"
+                onClick={() => {
+                  onSwitchTab && onSwitchTab('budget');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="p-3 bg-white/95 hover:bg-white border border-slate-200/90 hover:border-amber-300 hover:shadow-md rounded-2xl transition-all text-left group cursor-pointer flex flex-col justify-between"
+              >
+                <div className="w-7 h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <span className="font-bold text-xs text-slate-900 group-hover:text-amber-600 transition-colors block">
+                    Budget & P&L
+                  </span>
+                  <span className="text-[10px] text-slate-500 leading-tight block mt-0.5">
+                    Serverless costs & ROI
+                  </span>
+                </div>
+              </button>
+
+              {/* 5. SEO Keywords */}
+              <button
+                type="button"
+                onClick={() => {
+                  onSwitchTab && onSwitchTab('kgr');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="p-3 bg-white/95 hover:bg-white border border-slate-200/90 hover:border-indigo-300 hover:shadow-md rounded-2xl transition-all text-left group cursor-pointer flex flex-col justify-between"
+              >
+                <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <Search className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <span className="font-bold text-xs text-slate-900 group-hover:text-indigo-600 transition-colors block">
+                    SEO Keywords
+                  </span>
+                  <span className="text-[10px] text-slate-500 leading-tight block mt-0.5">
+                    KGR ratio formula
+                  </span>
+                </div>
+              </button>
+
+              {/* 6. Compliance Audit */}
+              <button
+                type="button"
+                onClick={() => {
+                  onSwitchTab && onSwitchTab('audit');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="p-3 bg-white/95 hover:bg-white border border-slate-200/90 hover:border-rose-300 hover:shadow-md rounded-2xl transition-all text-left group cursor-pointer flex flex-col justify-between"
+              >
+                <div className="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <Activity className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <span className="font-bold text-xs text-slate-900 group-hover:text-rose-600 transition-colors block">
+                    Compliance Audit
+                  </span>
+                  <span className="text-[10px] text-slate-500 leading-tight block mt-0.5">
+                    Manual checklist
+                  </span>
+                </div>
+              </button>
+
+              {/* 7. AI Evaluator */}
+              <button
+                type="button"
+                onClick={() => {
+                  onSwitchTab && onSwitchTab('ai-evaluator');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="p-3 bg-white/95 hover:bg-white border border-slate-200/90 hover:border-purple-300 hover:shadow-md rounded-2xl transition-all text-left group cursor-pointer flex flex-col justify-between col-span-2 sm:col-span-1"
+              >
+                <div className="w-7 h-7 rounded-lg bg-purple-50 text-[#9d62ec] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <Sparkles className="w-3.5 h-3.5" />
+                </div>
+                <div>
+                  <span className="font-bold text-xs text-slate-900 group-hover:text-[#9d62ec] transition-colors block">
+                    AI Evaluator
+                  </span>
+                  <span className="text-[10px] text-slate-500 leading-tight block mt-0.5">
+                    Niche feasibility
+                  </span>
+                </div>
+              </button>
+            </div>
           </div>
 
           <div className="w-full max-w-2xl mx-auto border-t border-slate-300/60 my-6"></div>
@@ -792,6 +903,21 @@ ${
                     <CheckCircle2 className="w-4 h-4" />
                     <span>Pre-Submission Checklist ({Object.values(checkedItems).filter(Boolean).length}/{result.reApplicationChecklist.length})</span>
                   </button>
+
+                  {/* New Tab: Website AdSense Earnings & Ad Stack */}
+                  {result.revenueEstimation && (
+                    <button
+                      onClick={() => setActiveResultTab('revenue')}
+                      className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
+                        activeResultTab === 'revenue'
+                          ? 'bg-emerald-600 text-white shadow-sm'
+                          : 'text-emerald-700 bg-emerald-50 hover:bg-emerald-100'
+                      }`}
+                    >
+                      <DollarSign className="w-4 h-4" />
+                      <span>Estimated Earnings (~${result.revenueEstimation.estimatedEarnings.avgMonthly.toLocaleString()}/mo)</span>
+                    </button>
+                  )}
                 </div>
 
                 <button
@@ -950,6 +1076,22 @@ ${
                       );
                     })}
                   </div>
+                </div>
+              )}
+
+              {/* Tab 4: AdSense Revenue & Ad Stack Estimation */}
+              {activeResultTab === 'revenue' && result.revenueEstimation && (
+                <div className="mt-6">
+                  <WebsiteRevenueCard
+                    estimation={result.revenueEstimation}
+                    domainUrl={result.url}
+                    onOpenCalculator={() => {
+                      if (onSwitchTab) {
+                        onSwitchTab('calculator');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                  />
                 </div>
               )}
             </div>

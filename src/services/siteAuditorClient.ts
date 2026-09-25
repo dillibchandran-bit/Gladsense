@@ -1,4 +1,5 @@
 import { SiteAuditRequest, SiteAuditResult, SiteAuditBlocker, SiteAuditFinding } from '../types';
+import { estimateWebsiteRevenue } from './revenueEstimatorEngine';
 
 /**
  * Universal Client-Side Engine for GladSense Audit
@@ -353,6 +354,8 @@ export async function runClientSideAudit(request: SiteAuditRequest): Promise<Sit
       .join(', ')}). Do not submit until remediation is complete.`;
   }
 
+  const revenueEstimation = estimateWebsiteRevenue(html || '', normalizedUrl, pageTitle);
+
   return {
     url: normalizedUrl,
     mode,
@@ -361,6 +364,7 @@ export async function runClientSideAudit(request: SiteAuditRequest): Promise<Sit
     overallStatus,
     pageTitle: pageTitle || host,
     verdictSummary,
+    revenueEstimation,
     metrics: {
       isHttps,
       hasMobileViewport,

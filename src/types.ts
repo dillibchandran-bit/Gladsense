@@ -195,6 +195,33 @@ export interface SiteAuditFinding {
   detail: string;
 }
 
+export interface RevenueEstimation {
+  detectedNiche: string;
+  nicheRpmRange: { min: number; max: number; avg: number };
+  detectedAdTech: {
+    hasAdSense: boolean;
+    hasGooglePublisherTag: boolean;
+    hasHeaderBidding: boolean;
+    hasMediavineOrRaptive: boolean;
+    hasEzoic: boolean;
+    hasAffiliateLinks: boolean;
+    adUnitCount: number;
+    adPlacementsDetected: string[];
+  };
+  monthlyPageviewsBaseline: number; // e.g., 50000
+  estimatedEarnings: {
+    lowMonthly: number;
+    avgMonthly: number;
+    highMonthly: number;
+    avgAnnual: number;
+  };
+  trafficTiers: Array<{
+    pageviews: number;
+    label: string;
+    monthlyEarnings: number;
+  }>;
+}
+
 export interface SiteAuditResult {
   url: string;
   mode: SiteAuditMode;
@@ -204,6 +231,7 @@ export interface SiteAuditResult {
   verdictSummary: string;
   pageTitle?: string;
   isSimulatedDemo?: boolean;
+  revenueEstimation?: RevenueEstimation;
   metrics: {
     isHttps: boolean;
     hasMobileViewport: boolean;

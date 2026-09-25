@@ -1,4 +1,5 @@
 import { SiteAuditRequest, SiteAuditResult, SiteAuditBlocker, SiteAuditFinding } from '../src/types';
+import { estimateWebsiteRevenue } from '../src/services/revenueEstimatorEngine';
 
 /**
  * Server-side zero-overhead website auditor for Google AdSense compliance and rejection diagnosis.
@@ -406,6 +407,8 @@ export async function runSiteAudit(request: SiteAuditRequest): Promise<SiteAudit
       ? `Moderate Readiness (${baseProbability}%). Essential infrastructure is present, but ${criticalBlockers.length} issues must be resolved to eliminate rejection risk.`
       : `High Rejection Risk (${baseProbability}%). Critical violations detected (${criticalBlockers.map((b) => b.title).slice(0, 2).join(', ')}). Do not submit until remediation is complete.`;
 
+  const revenueEstimation = estimateWebsiteRevenue(html || '', normalizedUrl, pageTitle);
+
   return {
     url: normalizedUrl,
     mode,
@@ -414,6 +417,7 @@ export async function runSiteAudit(request: SiteAuditRequest): Promise<SiteAudit
     overallStatus,
     verdictSummary,
     pageTitle,
+    revenueEstimation,
     metrics: {
       isHttps,
       hasMobileViewport,
