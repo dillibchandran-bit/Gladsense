@@ -1,0 +1,6 @@
+{
+  "name": "AdSense Niche Strategist & Revenue Calculator",
+  "description": "High-traffic low-competition niche discovery, AdSense revenue modeling, live website pre-approval auditor, and rejection diagnostic doctor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
