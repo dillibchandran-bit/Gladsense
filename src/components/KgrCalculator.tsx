@@ -16,6 +16,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { KidExplainer } from './KidExplainer';
+import { searchKgrClientSide } from '../services/kgrSearchClient';
 
 interface KgrItem {
   kw: string;
@@ -113,22 +114,30 @@ export const KgrCalculator: React.FC = () => {
     setSearchError(null);
 
     try {
-      const response = await fetch('/api/search-kgr', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: queryToSearch.trim() }),
-      });
+      let keywords: KgrItem[] = [];
 
-      if (!response.ok) {
-        throw new Error('Search failed. Please try a different term.');
+      try {
+        const response = await fetch('/api/search-kgr', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: queryToSearch.trim() }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (Array.isArray(data.keywords)) {
+            keywords = data.keywords;
+          }
+        } else {
+          throw new Error('Server returned non-200');
+        }
+      } catch (backendErr) {
+        // Fallback for static hosting on Cloudflare Pages
+        console.warn('Backend search unavailable, running client KGR search:', backendErr);
+        keywords = searchKgrClientSide(queryToSearch.trim());
       }
 
-      const data = await response.json();
-      if (Array.isArray(data.keywords)) {
-        setSearchResults(data.keywords);
-      } else {
-        setSearchResults([]);
-      }
+      setSearchResults(keywords);
     } catch (err: any) {
       setSearchError(err?.message || 'Could not fetch keyword data.');
     } finally {

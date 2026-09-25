@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AiEvaluationResult } from '../types';
+import { evaluateNicheClientSide } from '../services/aiEvaluatorClient';
 import { Sparkles, Loader2, CheckCircle2, AlertTriangle, ShieldCheck, DollarSign, Cpu, TrendingUp, Copy, Check, ExternalLink, Receipt, Wallet, HelpCircle } from 'lucide-react';
 import { KidExplainer } from './KidExplainer';
 
@@ -27,22 +28,35 @@ export const AiNicheEvaluator: React.FC<AiNicheEvaluatorProps> = ({ onSimulateRp
     setWarningMsg(null);
 
     try {
-      const res = await fetch('/api/evaluate-niche', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nicheName, targetAudience, description }),
-      });
+      let evaluationData: AiEvaluationResult;
+      let generatedByAi = true;
 
-      if (!res.ok) {
-        throw new Error(`Failed to evaluate niche: ${res.statusText}`);
+      try {
+        const res = await fetch('/api/evaluate-niche', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nicheName, targetAudience, description }),
+        });
+
+        if (!res.ok) {
+          throw new Error(`Failed to evaluate niche: ${res.statusText}`);
+        }
+
+        const data = await res.json();
+        evaluationData = data.evaluation;
+        generatedByAi = Boolean(data.isAiGenerated);
+        if (data.warning) {
+          setWarningMsg(data.warning);
+        }
+      } catch (backendErr) {
+        // Fallback to client-side engine for Cloudflare Pages static hosting
+        console.warn('Backend unavailable, running GladSense client evaluator engine:', backendErr);
+        evaluationData = evaluateNicheClientSide(nicheName, targetAudience, description);
+        generatedByAi = false;
       }
 
-      const data = await res.json();
-      setResult(data.evaluation);
-      setIsAiGenerated(Boolean(data.isAiGenerated));
-      if (data.warning) {
-        setWarningMsg(data.warning);
-      }
+      setResult(evaluationData);
+      setIsAiGenerated(generatedByAi);
     } catch (err: any) {
       console.error(err);
       setError('Evaluation service was temporarily unable to respond. Please try again.');

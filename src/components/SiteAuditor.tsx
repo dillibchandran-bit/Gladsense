@@ -4,6 +4,7 @@ import {
   RejectionCategory,
   SiteAuditResult,
 } from '../types';
+import { runClientSideAudit } from '../services/siteAuditorClient';
 import {
   Stethoscope,
   ShieldCheck,
@@ -64,23 +65,36 @@ export const SiteAuditor: React.FC<SiteAuditorProps> = ({ onSwitchTab }) => {
     setError(null);
 
     try {
-      const response = await fetch('/api/audit-site', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      let data: SiteAuditResult;
+      try {
+        const response = await fetch('/api/audit-site', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url: targetUrl.trim(),
+            mode: targetMode,
+            rejectionReason: targetReason,
+            customNotes,
+            sampleContent,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server returned ${response.status}`);
+        }
+        data = await response.json();
+      } catch (backendErr) {
+        // Cloudflare Pages Static SPA fallback: Run client-side analysis directly in browser
+        console.warn('Backend endpoint unavailable, running GladSense client audit engine:', backendErr);
+        data = await runClientSideAudit({
           url: targetUrl.trim(),
           mode: targetMode,
           rejectionReason: targetReason,
           customNotes,
           sampleContent,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Audit service encountered an error.');
+        });
       }
 
-      const data: SiteAuditResult = await response.json();
       setResult(data);
       setCheckedItems({});
       setActiveResultTab(targetMode === 'rejection-doctor' ? 'plan' : 'overview');
