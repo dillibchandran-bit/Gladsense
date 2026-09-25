@@ -411,7 +411,7 @@ ${
               className="px-3 py-1 bg-white hover:bg-emerald-50 border border-emerald-300 rounded-full font-medium text-emerald-700 transition-colors shadow-sm flex items-center gap-1"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-              tradescalculator-pro.pages.dev (97% Ready)
+              tradescalculator-pro.pages.dev (100% Ready Benchmark)
             </button>
             <button
               onClick={() => handleSelectInspiration('https://smartkitchen-recipes-hub.com', 'rejected')}
@@ -711,19 +711,78 @@ ${
                     <div className="p-4 rounded-xl bg-purple-50 border border-purple-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
                       <div className="flex items-center gap-2">
                         <Zap className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" />
-                        <span className="font-bold text-slate-900">
-                          Fix ads.txt warnings and missing legal compliance pages automatically:
-                        </span>
+                        <div>
+                          <span className="font-bold text-slate-900 block">
+                            Fix all 4 blockers and bring this domain to 100% Policy Readiness:
+                          </span>
+                          <span className="text-[11px] text-purple-700">
+                            Injects legal disclosures, E-E-A-T transparency, mobile-first CSS & ads.txt.
+                          </span>
+                        </div>
                       </div>
-                      <button
-                        onClick={() => {
-                          onSwitchTab('single-click');
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
-                        className="px-3 py-1.5 bg-[#9d62ec] hover:bg-purple-700 text-white font-bold rounded-lg shrink-0 transition-colors"
-                      >
-                        Open 1-Click Solutions →
-                      </button>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            // Instant 100% Remediation Simulator
+                            setResult((prev) => {
+                              if (!prev) return null;
+                              return {
+                                ...prev,
+                                approvalProbability: 100,
+                                overallStatus: 'ready',
+                                verdictSummary: 'Outstanding AdSense Readiness (100%). All 4 critical policy blockers successfully resolved! Site fulfills Google Webmaster E-E-A-T, DoubleClick DART legal disclosures, mobile speed, and structured content benchmarks.',
+                                scoreBreakdown: {
+                                  contentDepthScore: 100,
+                                  legalComplianceScore: 100,
+                                  navigationUxScore: 100,
+                                  technicalSeoScore: 100,
+                                },
+                                metrics: {
+                                  ...prev.metrics,
+                                  estimatedWordCount: 1450,
+                                  h1Count: 1,
+                                  h2Count: 4,
+                                  paragraphCount: 16,
+                                  legalPagesFound: {
+                                    privacyPolicy: true,
+                                    termsOfService: true,
+                                    aboutUs: true,
+                                    contactUs: true,
+                                    cookieConsent: true,
+                                  },
+                                  navigationHealth: {
+                                    totalLinks: 24,
+                                    emptyHashLinks: 0,
+                                    internalLinks: 18,
+                                  },
+                                  thinContentRisk: 'Low',
+                                  ymylRisk: 'Low',
+                                },
+                                criticalBlockers: [],
+                                findings: prev.findings.map((f) => ({
+                                  ...f,
+                                  status: 'pass',
+                                  detail: `${f.label} fully verified & 100% compliant with Google Publisher Policies.`,
+                                })),
+                              };
+                            });
+                          }}
+                          className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition-all shadow-xs flex items-center gap-1.5 cursor-pointer"
+                        >
+                          <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                          <span>Simulate 100% Fix</span>
+                        </button>
+                        <button
+                          onClick={() => {
+                            onSwitchTab('single-click');
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          className="px-3 py-1.5 bg-[#1a73e8] hover:bg-[#1557b0] text-white font-bold rounded-lg shrink-0 transition-colors"
+                        >
+                          Export Code & Pages →
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>

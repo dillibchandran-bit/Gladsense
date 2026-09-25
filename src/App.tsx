@@ -16,10 +16,12 @@ import { BudgetBlueprint } from './components/BudgetBlueprint';
 import { AiNicheEvaluator } from './components/AiNicheEvaluator';
 import { SiteAuditor } from './components/SiteAuditor';
 import { SingleClickSolutions } from './components/SingleClickSolutions';
+import { LegalModal } from './components/LegalModal';
 import { NavTabType } from './components/Navbar';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<NavTabType>('site-doctor');
+  const [legalModalType, setLegalModalType] = useState<'privacy' | 'terms' | 'about' | 'contact' | null>(null);
 
   const [selectedNiche, setSelectedNiche] = useState<Niche | null>(null);
   const [calculatorRpm, setCalculatorRpm] = useState<number>(22);
@@ -115,7 +117,13 @@ export default function App() {
         />
       )}
 
-      {/* GladSense Official Footer with Statutory Trademark Disclaimer */}
+      {/* Interactive Compliance Documents Modal */}
+      <LegalModal
+        type={legalModalType}
+        onClose={() => setLegalModalType(null)}
+      />
+
+      {/* GladSense Official Footer with Statutory Trademark Disclaimer & Verified Policy Links */}
       <footer className="mt-auto py-8 text-xs border-t border-[#dadce0] bg-[#f8f9fa] text-[#5f6368]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -126,18 +134,41 @@ export default function App() {
               <span className="text-[#dadce0]">|</span>
               <span className="text-[#5f6368]">The Pre-Approval Site Auditor & Policy Doctor for Google AdSense</span>
             </div>
-            <div className="flex items-center gap-6 text-[12px] text-[#5f6368]">
+            <div className="flex flex-wrap items-center gap-5 text-[12px] text-[#5f6368]">
+              <button
+                type="button"
+                onClick={() => setLegalModalType('privacy')}
+                className="hover:text-[#1a73e8] transition-colors cursor-pointer font-medium"
+              >
+                Privacy Policy
+              </button>
+              <button
+                type="button"
+                onClick={() => setLegalModalType('terms')}
+                className="hover:text-[#1a73e8] transition-colors cursor-pointer font-medium"
+              >
+                Terms of Service
+              </button>
+              <button
+                type="button"
+                onClick={() => setLegalModalType('about')}
+                className="hover:text-[#1a73e8] transition-colors cursor-pointer font-medium"
+              >
+                About Us (E-E-A-T)
+              </button>
+              <button
+                type="button"
+                onClick={() => setLegalModalType('contact')}
+                className="hover:text-[#1a73e8] transition-colors cursor-pointer font-medium"
+              >
+                Contact
+              </button>
+              <span className="text-slate-300">|</span>
               <a href="https://support.google.com/adsense/answer/48182" target="_blank" rel="noreferrer" className="hover:text-[#1a73e8] transition-colors">
-                Publisher Policies
+                Google Policies
               </a>
               <a href="https://support.google.com/adsense/answer/7532444" target="_blank" rel="noreferrer" className="hover:text-[#1a73e8] transition-colors">
                 ads.txt Guide
-              </a>
-              <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer" className="hover:text-[#1a73e8] transition-colors">
-                Privacy
-              </a>
-              <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer" className="hover:text-[#1a73e8] transition-colors">
-                Terms
               </a>
             </div>
           </div>
