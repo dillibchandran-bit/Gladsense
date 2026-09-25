@@ -169,130 +169,58 @@ ${
 
   return (
     <div className="w-full bg-white">
-      {/* GOOGLE ADSENSE OFFICIAL LANDING PAGE HERO SECTION */}
-      <section className="relative w-full pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 lg:px-8 border-b border-[#dadce0] bg-white">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          {/* Left Column: Google AdSense Big Hero Typography */}
-          <div className="lg:col-span-7 text-left space-y-6">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal text-[#202124] tracking-tight leading-[1.1] font-['Google_Sans_Display','Google_Sans',sans-serif]">
-              You create.<br />
-              We’ll help you<br />
-              <span className="text-[#1a73e8] font-medium">earn.</span>
+      {/* BRIGHT PASTEL HERO CANVAS (MATCHING SEMRUSH FREE CHECKER VISUALS) */}
+      <section className="relative w-full pt-16 pb-20 sm:pt-24 sm:pb-28 px-4 sm:px-6 lg:px-8 border-b border-slate-200/80 bg-gradient-to-b from-[#eaf4ff] via-[#edf2fc] to-[#f4eefc] overflow-hidden">
+        {/* Subtle Ambient Glow Orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#d0e6ff]/50 rounded-full blur-3xl pointer-events-none -translate-y-1/2"></div>
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-[#ebd9ff]/40 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="relative max-w-4xl mx-auto text-center space-y-6">
+          {/* Main Title Header */}
+          <div className="space-y-3">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#191b23] tracking-tight font-['Google_Sans_Display','Google_Sans',sans-serif]">
+              AdSense Site Checker
             </h1>
-
-            <p className="text-base sm:text-lg text-[#5f6368] max-w-xl leading-relaxed font-normal">
-              AdSense makes it easy to earn money from your content, whether you're an independent creator or a larger company. Check your approval readiness, eliminate low-value content flags, and maximize earnings with zero server expenses.
+            <p className="text-xs sm:text-sm font-semibold text-slate-500 uppercase tracking-widest">
+              Powered by GladSense Publisher Policy & Site Audit Engine
             </p>
-
-            {/* Quick Action Button & Link (Exact Google AdSense style) */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <button
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById('search-input-box');
-                  if (el) el.focus();
-                }}
-                className="px-6 py-2.5 rounded-full text-sm font-medium text-white bg-[#1a73e8] hover:bg-[#1765cc] transition-all shadow-xs cursor-pointer"
-              >
-                Audit your site
-              </button>
-              <button
-                type="button"
-                onClick={() => onSwitchTab && onSwitchTab('niches')}
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-[#1a73e8] hover:text-[#1765cc] cursor-pointer"
-              >
-                <span>Learn how to start earning</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Mode Switcher Pill (Google Style) */}
-            <div className="inline-flex items-center bg-[#f1f3f4] p-1 rounded-full border border-[#dadce0] mt-4">
-              <button
-                type="button"
-                onClick={() => setMode('pre-approval')}
-                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1.5 ${
-                  mode === 'pre-approval'
-                    ? 'bg-white text-[#1a73e8] shadow-xs font-semibold'
-                    : 'text-[#5f6368] hover:text-[#202124]'
-                }`}
-              >
-                <ShieldCheck className="w-3.5 h-3.5 text-[#188038]" />
-                <span>Pre-Approval Audit</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setMode('rejection-doctor')}
-                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1.5 ${
-                  mode === 'rejection-doctor'
-                    ? 'bg-white text-[#1a73e8] shadow-xs font-semibold'
-                    : 'text-[#5f6368] hover:text-[#202124]'
-                }`}
-              >
-                <Activity className="w-3.5 h-3.5 text-[#1a73e8]" />
-                <span>Rejection Doctor</span>
-              </button>
-            </div>
           </div>
 
-          {/* Right Column: Google AdSense Phone & Graphic Mockup (from image) */}
-          <div className="lg:col-span-5 flex items-center justify-center">
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px]">
-              {/* Phone Mockup Frame */}
-              <div className="bg-[#202124] rounded-[36px] p-2.5 shadow-2xl border-4 border-[#3c4043]">
-                {/* Screen */}
-                <div className="bg-white rounded-[28px] overflow-hidden p-4 space-y-3.5">
-                  <div className="flex items-center justify-between pb-2 border-b border-[#f1f3f4] text-xs font-medium text-[#5f6368]">
-                    <span>The Creator Hub</span>
-                    <span className="w-2 h-2 rounded-full bg-[#34a853]"></span>
-                  </div>
+          <p className="text-base sm:text-lg text-slate-700 max-w-2xl mx-auto leading-relaxed font-normal">
+            Enter a domain or website and run an AdSense audit. Find <strong className="text-slate-950 font-bold">policy violations and low-value content issues</strong> across your site and get a clear report with what to fix first.
+          </p>
 
-                  {/* Header / Graphic banner */}
-                  <div className="h-28 rounded-xl bg-gradient-to-tr from-[#fce8e6] via-[#fef7e0] to-[#e8f0fe] p-3 flex flex-col justify-end">
-                    <span className="text-[11px] font-medium text-[#1a73e8] uppercase tracking-wider">AdSense Verified</span>
-                    <span className="text-sm font-semibold text-[#202124]">$2,450.00 / mo</span>
-                  </div>
-
-                  {/* Sample content boxes representing website blocks */}
-                  <div className="space-y-2">
-                    <div className="h-3 bg-[#f1f3f4] rounded-full w-3/4"></div>
-                    <div className="h-3 bg-[#f1f3f4] rounded-full w-full"></div>
-                    <div className="h-3 bg-[#f1f3f4] rounded-full w-5/6"></div>
-                  </div>
-
-                  {/* Ad Banner representation */}
-                  <div className="p-2.5 bg-[#e8f0fe] rounded-lg border border-[#d2e3fc] flex items-center justify-between">
-                    <span className="text-[10px] text-[#1a73e8] font-medium">Google Ad Unit</span>
-                    <span className="text-[10px] text-[#5f6368]">Responsive</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Google Badges (matching image: blue click icon & graph card) */}
-              <div className="absolute -top-3 -right-3 w-12 h-12 rounded-2xl bg-[#1a73e8] text-white flex items-center justify-center shadow-lg">
-                <Zap className="w-6 h-6 fill-white" />
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-white p-3 rounded-2xl border border-[#dadce0] shadow-lg flex items-center gap-2.5">
-                <span className="w-8 h-8 rounded-full bg-[#e6f4ea] text-[#137333] flex items-center justify-center font-bold text-xs">
-                  ✓
-                </span>
-                <div className="text-left text-xs">
-                  <span className="font-semibold text-[#202124] block">100% Policy Compliant</span>
-                  <span className="text-[#5f6368] text-[10px]">Zero Rejection Risk</span>
-                </div>
-              </div>
-            </div>
+          {/* Mode Switcher Pill */}
+          <div className="inline-flex items-center bg-white/80 backdrop-blur-xs p-1 rounded-full border border-slate-200 shadow-xs">
+            <button
+              type="button"
+              onClick={() => setMode('pre-approval')}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer ${
+                mode === 'pre-approval'
+                  ? 'bg-[#1a73e8] text-white shadow-xs font-semibold'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Pre-Approval Audit</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode('rejection-doctor')}
+              className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1.5 cursor-pointer ${
+                mode === 'rejection-doctor'
+                  ? 'bg-[#9d62ec] text-white shadow-xs font-semibold'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Activity className="w-3.5 h-3.5" />
+              <span>Rejection Doctor</span>
+            </button>
           </div>
 
-        </div>
-
-        {/* Search Bar & Audit Trigger Container */}
-        <div className="max-w-3xl mx-auto mt-12 text-center">
-
-          {/* Rejection Reason Selector (when in Rejection Doctor mode) */}
+          {/* Rejection Reason Dropdown (Rejection Doctor mode) */}
           {mode === 'rejection-doctor' && (
-            <div className="max-w-xl mx-auto mt-2 mb-4 p-3 bg-white/95 rounded-2xl border border-purple-200 shadow-md text-left transition-all">
+            <div className="max-w-xl mx-auto p-3.5 bg-white/95 backdrop-blur-md rounded-2xl border border-purple-200 shadow-md text-left transition-all">
               <label className="block text-xs font-bold text-slate-800 mb-1 flex items-center justify-between">
                 <span>Specify Google AdSense Rejection Reason:</span>
                 <span className="text-[11px] font-normal text-purple-600 font-medium">Rejection Fix Mode Active</span>
@@ -312,33 +240,30 @@ ${
             </div>
           )}
 
-          {/* GOOGLE ADSENSE CLEAN ROUNDED SEARCH BAR */}
+          {/* BRIGHT PILL SEARCH BOX CANVAS (MATCHING SEMRUSH) */}
           <form
             onSubmit={(e) => {
               e.preventDefault();
               handleRunAudit();
             }}
-            className="max-w-2xl mx-auto mt-6"
+            className="max-w-2xl mx-auto pt-2"
           >
-            <div className="bg-white rounded-full p-2 shadow-md hover:shadow-lg border border-[#dadce0] flex items-center gap-2 transition-all focus-within:border-[#1a73e8] focus-within:ring-4 focus-within:ring-[#e8f0fe]">
-              <div className="pl-4 text-[#5f6368]">
-                <Search className="w-5 h-5 text-[#5f6368]" />
-              </div>
+            <div className="bg-white rounded-full p-2 pl-6 shadow-xl hover:shadow-2xl border border-slate-200/90 flex items-center gap-3 transition-all focus-within:ring-4 focus-within:ring-purple-200 focus-within:border-[#9d62ec]">
               <input
                 id="search-input-box"
                 type="text"
                 required
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="Enter your website URL (e.g. yoursite.com)"
-                className="flex-1 bg-transparent px-2 py-2 text-sm sm:text-base text-[#202124] placeholder:text-[#80868b] focus:outline-none font-['Google_Sans',sans-serif]"
+                placeholder="Enter a domain or website URL"
+                className="flex-1 bg-transparent py-2 text-sm sm:text-base text-slate-900 placeholder:text-slate-400 focus:outline-none font-normal"
               />
 
-              {/* GOOGLE SOLID BLUE BUTTON */}
+              {/* SEMRUSH-STYLE BRIGHT VIBRANT BUTTON */}
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-[#1a73e8] hover:bg-[#1765cc] text-white font-medium text-xs sm:text-sm px-6 py-2.5 rounded-full transition-all shadow-xs whitespace-nowrap flex items-center gap-2 disabled:opacity-50 cursor-pointer"
+                className="bg-[#9d62ec] hover:bg-[#8b4de3] text-white font-bold text-xs sm:text-sm px-6 sm:px-8 py-3 rounded-full transition-all shadow-md hover:shadow-lg whitespace-nowrap flex items-center gap-2 disabled:opacity-50 cursor-pointer shrink-0"
               >
                 {loading ? (
                   <>
@@ -349,22 +274,29 @@ ${
                   <span>Analyze Website</span>
                 )}
               </button>
+
+              <span className="pr-3 text-xs text-slate-400 font-mono hidden sm:inline-flex items-center gap-1">
+                1/1
+                <span className="w-3.5 h-3.5 rounded-full border border-slate-300 text-[9px] flex items-center justify-center text-slate-400 font-bold">
+                  ?
+                </span>
+              </span>
             </div>
 
-            {/* Localhost / Firewalled Paste Fallback Accordion */}
+            {/* Localhost / Content Assist Accordion */}
             <div className="mt-3 text-center">
               <button
                 type="button"
                 onClick={() => setShowAdvanced(!showAdvanced)}
-                className="text-xs text-[#5f6368] hover:text-[#202124] transition-colors inline-flex items-center gap-1 font-medium"
+                className="text-xs text-slate-500 hover:text-slate-800 transition-colors inline-flex items-center gap-1 font-medium"
               >
                 {showAdvanced ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
                 <span>Testing localhost or behind Cloudflare? Optional content assist</span>
               </button>
 
               {showAdvanced && (
-                <div className="mt-2.5 p-4 rounded-2xl bg-[#f8f9fa] border border-[#dadce0] text-left text-xs max-w-xl mx-auto shadow-xs">
-                  <p className="text-[#3c4043] mb-2 font-normal">
+                <div className="mt-2.5 p-4 rounded-2xl bg-white border border-slate-200 text-left text-xs max-w-xl mx-auto shadow-sm">
+                  <p className="text-slate-600 mb-2 font-normal">
                     If your website is on localhost or blocked by Cloudflare captcha, paste your sample article text or footer content here for instant analysis:
                   </p>
                   <textarea
@@ -372,76 +304,96 @@ ${
                     value={sampleContent}
                     onChange={(e) => setSampleContent(e.target.value)}
                     placeholder="Paste article body text, paragraph copy, or footer links here..."
-                    className="w-full p-2.5 bg-white border border-[#dadce0] rounded-xl text-[#202124] text-xs focus:outline-none focus:border-[#1a73e8]"
+                    className="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 text-xs focus:outline-none focus:border-[#9d62ec]"
                   />
                 </div>
               )}
             </div>
           </form>
 
-          {/* Quick Guide Component Placement */}
-          <div className="mt-8 text-left">
-            <KidExplainer
-              title="GladSense Site Doctor"
-              badge="QUICK GUIDE"
-              what="An automated audit that inspects your website structure, content depth, and required legal disclosures."
-              why="Google rejects up to 85% of new websites on first review. Auditing with GladSense beforehand ensures your site satisfies all webmaster quality guidelines."
-              how="Enter your domain URL in the search bar above and click the blue 'Analyze Website' button."
-              result="You receive a clear 0–100% readiness score with prioritized fixes to resolve before applying to AdSense."
-            />
-          </div>
-
-          {/* Inspiration Suggestion Pills (matching image: "Need inspiration? Try: google.com  apple.com") */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-5 text-xs text-slate-500">
+          {/* Need Inspiration Pills (Matching Semrush Image) */}
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-2 text-xs text-slate-600">
             <span>Need inspiration? Try:</span>
             <button
+              type="button"
               onClick={() => handleSelectInspiration('google.com', 'generic')}
-              className="px-3 py-1 bg-white hover:bg-slate-100 border border-slate-200 rounded-full font-medium text-slate-700 transition-colors shadow-sm"
+              className="px-3.5 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded-full font-medium text-slate-800 transition-colors shadow-2xs cursor-pointer"
             >
               google.com
             </button>
             <button
+              type="button"
               onClick={() => handleSelectInspiration('apple.com', 'generic')}
-              className="px-3 py-1 bg-white hover:bg-slate-100 border border-slate-200 rounded-full font-medium text-slate-700 transition-colors shadow-sm"
+              className="px-3.5 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded-full font-medium text-slate-800 transition-colors shadow-2xs cursor-pointer"
             >
               apple.com
             </button>
             <button
+              type="button"
               onClick={() => handleSelectInspiration('https://tradescalculator-pro.pages.dev', 'compliant')}
-              className="px-3 py-1 bg-white hover:bg-emerald-50 border border-emerald-300 rounded-full font-medium text-emerald-700 transition-colors shadow-sm flex items-center gap-1"
+              className="px-3.5 py-1 bg-white hover:bg-emerald-50 border border-emerald-300 rounded-full font-medium text-emerald-700 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               tradescalculator-pro.pages.dev (100% Ready Benchmark)
             </button>
             <button
+              type="button"
               onClick={() => handleSelectInspiration('https://smartkitchen-recipes-hub.com', 'rejected')}
-              className="px-3 py-1 bg-white hover:bg-rose-50 border border-rose-300 rounded-full font-medium text-rose-700 transition-colors shadow-sm flex items-center gap-1"
+              className="px-3.5 py-1 bg-white hover:bg-rose-50 border border-rose-300 rounded-full font-medium text-rose-700 transition-colors shadow-2xs flex items-center gap-1.5 cursor-pointer"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
               smartkitchen-recipes-hub.com (Rejected Fix)
             </button>
           </div>
 
-          {/* Subtext link (matching "Need more than a free SEO check? Try Site Audit.") */}
-          <div className="mt-6 text-xs text-slate-500">
+          <div className="w-full max-w-2xl mx-auto border-t border-slate-300/60 my-6"></div>
+
+          {/* "YOU WILL SEE:" CHECKLIST (EXACT MATCH TO SEMRUSH IMAGE) */}
+          <div className="text-center space-y-3">
+            <h3 className="text-sm font-bold text-slate-900 tracking-tight">
+              You will see:
+            </h3>
+
+            <div className="inline-block text-left space-y-2 text-xs sm:text-sm text-slate-700">
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 stroke-[2.5] shrink-0" />
+                <span>An overall approval readiness score for your website's AdSense viability</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 stroke-[2.5] shrink-0" />
+                <span>Technical, policy, and on-page content depth issues affecting review screening</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 stroke-[2.5] shrink-0" />
+                <span>Mandatory legal compliance findings (Privacy Policy, About E-E-A-T, and Cookie TOS)</span>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Check className="w-4 h-4 text-emerald-600 stroke-[2.5] shrink-0" />
+                <span>Prioritized recommendations and 1-Click code fixes for what to resolve first</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Subtext Link */}
+          <div className="pt-2 text-xs text-slate-500">
             Need more than a free AdSense check? Explore{' '}
             <button
               onClick={() => onSwitchTab && onSwitchTab('niches')}
-              className="text-slate-900 font-bold underline hover:text-[#9d62ec] transition-colors"
+              className="text-slate-900 font-bold underline hover:text-[#9d62ec] transition-colors cursor-pointer"
             >
               Niche Matrix
             </button>
             ,{' '}
             <button
               onClick={() => onSwitchTab && onSwitchTab('calculator')}
-              className="text-slate-900 font-bold underline hover:text-[#9d62ec] transition-colors"
+              className="text-slate-900 font-bold underline hover:text-[#9d62ec] transition-colors cursor-pointer"
             >
               Revenue Simulator
             </button>
             , or{' '}
             <button
               onClick={() => onSwitchTab && onSwitchTab('kgr')}
-              className="text-slate-900 font-bold underline hover:text-[#9d62ec] transition-colors"
+              className="text-slate-900 font-bold underline hover:text-[#9d62ec] transition-colors cursor-pointer"
             >
               KGR Keyword Tool
             </button>
