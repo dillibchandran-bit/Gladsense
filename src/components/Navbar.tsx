@@ -1,13 +1,4 @@
 import React from 'react';
-import {
-  Compass,
-  Calculator,
-  CheckCircle2,
-  DollarSign,
-  Sparkles,
-  Stethoscope,
-  Zap,
-} from 'lucide-react';
 import { GoogleAdSenseLogo } from './GoogleAdSenseLogo';
 
 export type NavTabType =
@@ -47,96 +38,74 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-[#dadce0] text-[#202124]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Left: Google AdSense Logo */}
-          <div className="flex items-center gap-8">
-            <div
-              className="cursor-pointer flex items-center gap-2"
-              onClick={() => setActiveTab('site-doctor')}
-            >
-              <GoogleAdSenseLogo />
-            </div>
-
-            {/* Desktop Google Style Nav links with blue active underline */}
-            <nav className="hidden xl:flex items-center space-x-1 h-16">
-              {navItems.map((item) => {
-                const isActive = activeTab === item.id;
-                return (
-                  <button
-                    key={item.id}
-                    onClick={() => setActiveTab(item.id)}
-                    className={`relative h-16 px-3.5 text-sm font-medium transition-colors flex items-center gap-1.5 cursor-pointer ${
-                      isActive
-                        ? 'text-[#1a73e8] font-medium'
-                        : 'text-[#5f6368] hover:text-[#202124]'
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                    {item.badge && (
-                      <span className="text-[10px] font-semibold px-1.5 py-0.2 rounded-full bg-[#e8f0fe] text-[#1a73e8]">
-                        {item.badge}
-                      </span>
-                    )}
-                    {/* Active Blue Bottom Underline Indicator (exact Google AdSense style) */}
-                    {isActive && (
-                      <span className="absolute bottom-0 left-3.5 right-3.5 h-[3px] bg-[#1a73e8] rounded-t-sm" />
-                    )}
-                  </button>
-                );
-              })}
-            </nav>
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#e5e7eb] text-[#1f2937]">
+      <div className="max-w-[1440px] mx-auto px-3 sm:px-6">
+        <div className="flex items-center justify-between h-14 gap-2 lg:gap-4">
+          {/* Left: Corporate Brand Logo */}
+          <div
+            className="cursor-pointer shrink-0 flex items-center pr-1 sm:pr-3"
+            onClick={() => setActiveTab('site-doctor')}
+          >
+            <GoogleAdSenseLogo />
           </div>
 
-          {/* Right Action Buttons (Sign in / Sign up exactly like google.com/adsense/start/) */}
-          <div className="flex items-center gap-3">
+          {/* Center: Clean Corporate Single-Line Navigation */}
+          <nav className="flex items-center space-x-0.5 sm:space-x-1 overflow-x-auto scrollbar-none h-14 py-0 flex-1 justify-center max-w-4xl">
+            {navItems.map((item) => {
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveTab(item.id)}
+                  className={`relative h-14 px-2.5 lg:px-3 text-[13px] font-medium transition-all whitespace-nowrap flex items-center gap-1.5 shrink-0 cursor-pointer ${
+                    isActive
+                      ? 'text-[#1a73e8] font-semibold'
+                      : 'text-[#4b5563] hover:text-[#111827] hover:bg-slate-50'
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  {item.badge && (
+                    <span className="text-[9px] font-bold px-1.5 py-0.2 rounded-full bg-blue-50 text-[#1a73e8] border border-blue-100">
+                      {item.badge}
+                    </span>
+                  )}
+                  {/* Underline Tab Indicator */}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-2 right-2 h-[2.5px] bg-[#1a73e8] rounded-t-full" />
+                  )}
+                </button>
+              );
+            })}
+          </nav>
+
+          {/* Right Action Suite: Corporate Buttons */}
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => setActiveTab('audit')}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium text-[#1a73e8] hover:bg-[#f8f9fa] rounded-md transition-colors"
+              className="hidden lg:inline-flex items-center gap-1 px-2.5 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200 transition-colors cursor-pointer"
             >
               <span>Score: {readinessPercent}%</span>
             </button>
 
-            {/* Google Pill "Sign in" Button */}
+            {/* Corporate Outline Sign In */}
             <button
               onClick={() => setActiveTab('site-doctor')}
-              className="px-5 py-2 text-sm font-medium text-[#1a73e8] hover:bg-[#f1f3f4] rounded-full border border-[#dadce0] transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg border border-slate-300 transition-colors cursor-pointer whitespace-nowrap"
             >
               Sign in
             </button>
 
-            {/* Google Solid Blue "Sign up" Button */}
+            {/* Corporate Solid Brand Button */}
             <button
               onClick={() => {
                 setActiveTab('single-click');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="px-5 py-2 text-sm font-medium text-white bg-[#1a73e8] hover:bg-[#1765cc] rounded-full transition-all shadow-xs cursor-pointer"
+              className="px-3.5 py-1.5 text-xs font-semibold text-white bg-[#1a73e8] hover:bg-[#1557b0] rounded-lg transition-all shadow-xs cursor-pointer whitespace-nowrap"
             >
               Sign up
             </button>
           </div>
-        </div>
-
-        {/* Medium and Mobile Horizontal Scroll Bar */}
-        <div className="xl:hidden flex space-x-1 overflow-x-auto scrollbar-none py-2 border-t border-[#f1f3f4] text-xs font-medium">
-          {navItems.map((item) => {
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveTab(item.id)}
-                className={`px-3 py-1.5 rounded-full whitespace-nowrap transition-colors flex items-center gap-1 shrink-0 ${
-                  isActive
-                    ? 'bg-[#e8f0fe] text-[#1a73e8] font-semibold'
-                    : 'text-[#5f6368] hover:bg-[#f8f9fa] hover:text-[#202124]'
-                }`}
-              >
-                <span>{item.label}</span>
-              </button>
-            );
-          })}
         </div>
       </div>
     </header>
